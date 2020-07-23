@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(uuv_mating)
+project(joint_example)
 
 # Check for c++11 / c++0x support
 include(CheckCXXCompilerFlag)
@@ -37,8 +37,8 @@ catkin_package(
     gazebo_ros
 )
 
-add_library(uuv_mating_plugin SHARED src/uuv_mating.cc)
-target_link_libraries(uuv_mating_plugin ${GAZEBO_LIBRARIES})
+add_library(joint_example_plugin SHARED src/joint_example.cc)
+target_link_libraries(joint_example_plugin ${GAZEBO_LIBRARIES})
 
-add_library(uuv_move_joint SHARED src/uuv_move_joint.cc)
-target_link_libraries(uuv_move_joint ${GAZEBO_LIBRARIES})
+add_library(joint_example_static_plugin SHARED src/joint_example_static.cc)
+target_link_libraries(joint_example_static_plugin ${GAZEBO_LIBRARIES})

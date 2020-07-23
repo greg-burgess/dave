@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    
+
+    
+    <model name ='blockA'>
+      <pose>-2 0 0.25 0 0 0</pose>
+      <link name ='blockA'>
+        <pose>0 0 0 0 0 0</pose>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.7</mu>
+            </ode>
+          </friction>
+        </surface>
+        <collision name ='collision'>
+          <laser_retro>255</laser_retro>
+          <geometry>
+            <box><size>0.5 0.5 0.5</size></box>
+          </geometry>
+        </collision>
+        <inertial name ='inertial'>
+          <mass>2</mass>
+        </inertial>
+        <visual name ='visual'>
+          <geometry>
+            <box><size>0.5 0.5 0.5</size></box>
+          </geometry>
+        </visual>
+      </link>
+
+    <model name ='blockB'>
+      <pose>2 0 0 0 0 0</pose>
+      <link name ='blockB'>
+        <pose>0 0 0 0 0 0</pose>
+        <surface>
+          <friction>
+            <ode>
+              <mu>0.1</mu>
+            </ode>
+          </friction>
+        </surface>
+        <collision name ='collision'>
+          <laser_retro>255</laser_retro>
+          <geometry>
+            <box><size>0.5 0.5 0.5</size></box>
+          </geometry>
+        </collision>
+        <inertial name ='inertial'>
+          <mass>2</mass>
+        </inertial>
+        <visual name ='visual'>
+          <geometry>
+            <box><size>0.5 0.5 0.5</size></box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <joint name="prismatic_joint" type="prismatic">
+      <parent>blockA</parent>
+      <child>blockB::blockB</child>
+      <pose>0.0 0.0 0.0 0.0 0.0 0.0</pose>
+      <axis>
+        <xyz>1.0 0.0 0.0</xyz>
+      </axis>
+    </joint>
+
+    </model>
+  <!-- <plugin name="joint_example_static_plugin" filename="libjoint_example_static_plugin.so"/> -->
+  </world>
+</sdf>
