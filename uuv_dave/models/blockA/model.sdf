@@ -11,7 +11,7 @@
         </geometry>
       </collision>
       <inertial name ='inertial'>
-        <mass>2</mass>
+        <mass>200</mass>
       </inertial>
       <visual name ='visual'>
         <geometry>

@@ -48,7 +48,7 @@ namespace gazebo
   public: void Update()
     {
       // connect the socket and the plug after 5 seconds
-      if (this->world->SimTime() > 5.0 && this->isJointInitiated == false)
+      if (this->world->SimTime() > 20.0 && this->isJointInitiated == false)
       {
         this->isJointInitiated = true;
         this->prismaticJoint = blockBModel->CreateJoint(
@@ -73,12 +73,16 @@ namespace gazebo
       if (this->isJointInitiated){
         blockBLink->SetSelfCollide(true);
         prismaticJoint->SetParam("friction", 0, .05);
-        blockBLink->AddForce(ignition::math::Vector3<double>(-80, 0, 0));
-        // blockBLink->SetLinearVel(ignition::math::Vector3<double>(-5, 0, 0));
-        // ignition::math::Vector3d grabAxis = prismaticJoint->LocalAxis(0);
-        // printf("%f %f %f   \n", grabAxis[0], grabAxis[1], grabAxis[2]);
-        // socketLink->SetCollideMode("all");
-        // plugLink->SetCollideMode("all");
+        blockBLink->AddForce(ignition::math::Vector3<double>(-120, 0, 0));
+      }
+      bool const displayForce = false;
+      if (displayForce){
+        // Two problems with this
+        // 1. block A feels force before anything touches it
+        // 2. Where is the force of gravity?
+        // 3. During the collision, no spike in the force in the X direction
+       ignition::math::Vector3d forceProbe = blockALink->RelativeForce();
+        printf("%.2f %.2f %.2f   \n", abs(forceProbe[0]), abs(forceProbe[1]), abs(forceProbe[2]));
       }
     }
   };
